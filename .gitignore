@@ -1,0 +1,6 @@
+a.out
+*.o
+server
+client
+trashes
+Gemfile.lock

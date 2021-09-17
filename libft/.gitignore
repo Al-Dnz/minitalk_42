@@ -1,0 +1,6 @@
+*.swp
+*.swo
+*.o
+*.a
+a.out
+prog
