@@ -1,6 +1,9 @@
 a.out
 *.o
+*.swp
+*.swo
 server
 client
 trashes
 Gemfile.lock
+.vscode
