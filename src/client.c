@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:59:19 by adenhez           #+#    #+#             */
-/*   Updated: 2021/09/22 15:22:27 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/09/22 15:37:38 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	char_to_bit(int pid, char c)
 {
-	int	bit_index;
+	int	head_bit;
 
-	bit_index = 1 << 6;
-	while (bit_index)
+	head_bit = 1 << 6;
+	while (head_bit)
 	{
-		if (bit_index & c)
+		if (head_bit & c)
 		{
 			if (kill(pid, SIGUSR1) == -1)
 			{
@@ -35,7 +35,7 @@ void	char_to_bit(int pid, char c)
 				exit(EXIT_FAILURE);
 			}
 		}
-		bit_index >>= 1;
+		head_bit >>= 1;
 		usleep(DELAY);
 	}
 }
