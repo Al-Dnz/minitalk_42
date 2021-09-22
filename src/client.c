@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:59:19 by adenhez           #+#    #+#             */
-/*   Updated: 2021/09/22 11:01:10 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/09/22 14:43:34 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	char_to_bit(int pid, char c)
 {
 	int	bit_index;
 
-	bit_index = 1 << 6;
+	bit_index = 1 << BIT_DIMENSION;
 	while (bit_index)
 	{
 		if (bit_index & c)

@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:59:15 by adenhez           #+#    #+#             */
-/*   Updated: 2021/09/22 12:35:02 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/09/22 15:02:40 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,11 @@ void	loop(void)
 		if (g_state.releasable_char == true)
 		{
 			if (g_state.c == 0)
-			{
 				write(1, "\n", 1);
-				g_state.closed_transmission = true;
-			}
 			else
-			{
 				write(1, &g_state.c, 1);
-			}
 			g_state.c = 0;
-			g_state.head_bit = 1 << 6;
+			g_state.head_bit = 1 << BIT_DIMENSION;
 			g_state.releasable_char = false;
 		}
 	}
@@ -59,10 +54,16 @@ void	display_pid(void)
 	write(1, "\n", 1);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	struct sigaction	bit_act;
 
+	(void)argv;
+	if (argc != 1)
+	{
+		ft_putstr_fd("No arguments needed\n", 1);
+		return (EXIT_FAILURE);
+	}
 	sigemptyset(&bit_act.sa_mask);
 	bit_act.sa_sigaction = bit_handler;
 	bit_act.sa_flags = SA_SIGINFO;
