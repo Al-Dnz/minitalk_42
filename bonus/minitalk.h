@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <stdio.h>
-# include "libft.h"
+# include "../libft/libft.h"
 
 # define DELAY 700
 # define BIT_DIMENSION 15

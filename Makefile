@@ -12,8 +12,8 @@ else
 endif
 
 CC = clang
-LIB = libft/libft.a
-LIBFT = libft
+LIB = ./libft/libft.a
+LIBFT = ./libft
 CFLAGS = -g3 -Wall -Wextra -Werror
 
 INC	= inc
@@ -29,19 +29,19 @@ all:
 	@(make -j $(SERVER))
 
 $(CLIENT): $(OBJ)
-	${CC} $(CFLAGS) -I$(LIBFT) $(LIB) -I$(INC) $(OBJ_DIR)/client.o -o $(CLIENT)
+	${CC} $(CFLAGS) $(OBJ_DIR)/client.o  $(LIB) -I$(INC) -o $(CLIENT)
 	@echo "\n------------------------------"
 	@echo "| => $(CLIENT) well created ! <= |"
 	@echo "------------------------------"
 
 $(SERVER): $(OBJ) $(INC)
-	${CC} $(CFLAGS) -I$(LIBFT) $(LIB) -I$(INC) $(OBJ_DIR)/server.o -o $(SERVER)
+	${CC} $(CFLAGS)  $(OBJ_DIR)/server.o $(LIB) -I$(INC) -o $(SERVER)
 	@echo "\n------------------------------"
 	@echo "| => $(SERVER) well created ! <= |"
 	@echo "------------------------------\n"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC) $(LIBFT) 
-	${CC} $(CFLAGS) -D$(OS_NAME) -I$(INC) -I$(LIBFT) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC)
+	${CC} $(CFLAGS) -D$(OS_NAME) -I$(INC) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)
@@ -59,8 +59,13 @@ re: fclean all
 
 bonus: fclean
 	@(make -C $(LIBFT))
-	${CC} $(CFLAGS) -I$(LIBFT) $(LIB) -Ibonus/minitalk.h bonus/server.c -o server_bonus
-	${CC} $(CFLAGS) -I$(LIBFT) $(LIB) -Ibonus/minitalk.h bonus/client.c -o client_bonus
-	@rm -rf *.dSYM
+	@rm -f -- server_bonus
+	@rm -f -- client_bonus
+	${CC} $(CFLAGS)  bonus/server.c $(LIB) -Ibonus/minitalk.h -o server_bonus
+	${CC} $(CFLAGS)  bonus/client.c $(LIB) -Ibonus/minitalk.h -o client_bonus
+	@rm -f *.dSYM
+	@echo "\n------------------------------"
+	@echo "| => bonus well created ! <= |"
+	@echo "------------------------------\n"
 
 .PHONY: all, clean, fclean, re
