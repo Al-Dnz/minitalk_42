@@ -53,7 +53,14 @@ fclean:	clean
 	@echo "\n=> [$(SERVER)]: deleted <=\n"
 	@rm -rf $(CLIENT)
 	@echo "\n=> [$(CLIENT)]: deleted <=\n"
+	@rm -rf server_bonus client_bonus
 
 re: fclean all
+
+bonus: fclean
+	@(make -C $(LIBFT))
+	${CC} $(CFLAGS) -I$(LIBFT) $(LIB) -Ibonus/minitalk.h bonus/server.c -o server_bonus
+	${CC} $(CFLAGS) -I$(LIBFT) $(LIB) -Ibonus/minitalk.h bonus/client.c -o client_bonus
+	@rm -rf *.dSYM
 
 .PHONY: all, clean, fclean, re

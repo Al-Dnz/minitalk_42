@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:59:15 by adenhez           #+#    #+#             */
-/*   Updated: 2021/09/22 15:03:57 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/09/22 15:02:40 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	bit_handler(int signum, siginfo_t *info, void *context)
 		g_state.c |= g_state.head_bit;
 	g_state.head_bit >>= 1;
 	if (!g_state.head_bit)
+	{
 		g_state.releasable_char = true;
+		if (g_state.c == 0)
+			kill(info->si_pid, SIGUSR1);
+	}
 }
 
 void	loop(void)
@@ -34,7 +38,7 @@ void	loop(void)
 			else
 				write(1, &g_state.c, 1);
 			g_state.c = 0;
-			g_state.head_bit = 1 << 6;
+			g_state.head_bit = 1 << BIT_DIMENSION;
 			g_state.releasable_char = false;
 		}
 	}
