@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:59:15 by adenhez           #+#    #+#             */
-/*   Updated: 2021/09/22 10:53:56 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/09/22 11:53:33 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,11 @@ void	one_bit(int signum, siginfo_t *info, void *context)
 void	zero_bit(int signum, siginfo_t *info, void *context)
 {
 	(void)signum;
+	(void)info;
 	(void)context;
 	g_state.head_bit >>= 1;
 	if (!g_state.head_bit)
-	{
 		g_state.releasable_char = true;
-		if (g_state.c == 0)
-			kill(info->si_pid, SIGUSR1);
-	}	
 }
 
 void	loop(void)

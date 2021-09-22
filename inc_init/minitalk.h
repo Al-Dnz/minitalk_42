@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:59:26 by adenhez           #+#    #+#             */
-/*   Updated: 2021/09/22 00:14:47 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/09/21 22:12:56 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 # include "libft.h"
 
-# define DELAY 700
+# define DELAY 500
 
 typedef struct s_g_state
 {
